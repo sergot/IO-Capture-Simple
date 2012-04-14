@@ -9,15 +9,13 @@ multi sub capture(Block $code) is export {
 multi sub capture_stdout(Block $code) is export {
 	my $result;
 
-	$*OUT = class {
+	my $*OUT = class {
 		method print(*@args) {
 			$result ~= @args.join;
 		}
 	}
 
 	$code.();
-
-	$*OUT = $stdout;
 
 	$result;
 }
