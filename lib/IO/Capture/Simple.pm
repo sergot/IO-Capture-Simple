@@ -28,7 +28,6 @@ multi sub capture_stdout($target is rw) {
 			$target ~= @args.join;
 		}
 	}
-	Bool::True;
 }
 
 multi sub capture_stderr(Block $code) is export {
