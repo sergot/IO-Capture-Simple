@@ -12,5 +12,5 @@ $r = '';
 
 capture_stdout($r);
 print $test;
-stdout_off;
+capture_stdout_off;
 ok $r ~~ $test;
