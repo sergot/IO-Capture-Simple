@@ -5,11 +5,19 @@ my $stderr = $*ERR;
 my $stdin = $*IN;
 
 sub capture(Callable $code) is export {
-	...
+	my ($out, $err, $in);
+
+	capture_on($out, $err, $in);
+	$code.();
+	capture_off;
+
+	$out, $err, $in;
 }
 
-sub capture_on($target is rw) is export {
-	...
+sub capture_on($out is rw, $err is rw, $in is rw) is export {
+	capture_stdout_on($out);
+	capture_stderr_on($err);
+	capture_stdin_on($in);
 }
 
 sub capture_stdout(Callable $code) is export {
@@ -73,5 +81,11 @@ sub capture_stderr_off is export {
 }
 
 sub capture_stdin_off is export {
+	$*IN = $stdin;
+}
+
+sub capture_off is export {
+	$*OUT = $stdout;
+	$*ERR = $stderr;
 	$*IN = $stdin;
 }
