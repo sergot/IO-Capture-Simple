@@ -1,4 +1,1 @@
 Perl 6 implementation of IO capturing module.
-
-TODO
-- $*IN capturing
