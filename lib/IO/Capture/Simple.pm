@@ -65,11 +65,25 @@ sub capture_stderr_on($target is rw) is export {
 }
 
 sub capture_stdin(Callable $code) is export {
-	...
+	my $result;
+
+	my $*IN = class {
+		method get() {
+			$result ~= $stdin.get;
+		}
+	}
+
+	$code.();
+
+	$result;
 }
 
-sub capture_stdin_on($target) is export {
-	...
+sub capture_stdin_on($target is rw) is export {
+	$*IN = class {
+		method get() {
+			$target ~= $stdin.get;
+		}
+	}
 }
 
 sub capture_stdout_off is export {
