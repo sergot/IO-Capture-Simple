@@ -11,7 +11,7 @@ ok $r ~~ /$test/;
 
 $r = '';
 
-capture_stderr($r);
+capture_stderr_on($r);
 note $test;
 capture_stderr_off;
 

@@ -10,7 +10,7 @@ ok $r ~~ $test;
 
 $r = '';
 
-capture_stdout($r);
+capture_stdout_on($r);
 print $test;
 capture_stdout_off;
 ok $r ~~ $test;
