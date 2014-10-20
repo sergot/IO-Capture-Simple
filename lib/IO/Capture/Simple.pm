@@ -33,6 +33,7 @@ sub capture_stdout(Callable $code) is export {
         method print(*@args) {
             $result ~= @args.join;
         }
+        method flush {}
     }
 
     $code.();
@@ -45,6 +46,7 @@ sub capture_stdout_on($target is rw) is export {
         method print(*@args) {
             $target ~= @args.join;
         }
+        method flush {}
     }
 }
 
