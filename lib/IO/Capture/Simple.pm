@@ -20,6 +20,12 @@ sub capture_on($out is rw, $err is rw, $in is rw) is export {
     capture_stdin_on($in);
 }
 
+sub capture_off is export {
+    $*OUT = $stdout;
+    $*ERR = $stderr;
+    $*IN = $stdin;
+}
+
 sub capture_stdout(Callable $code) is export {
     my $result;
 
@@ -40,6 +46,10 @@ sub capture_stdout_on($target is rw) is export {
             $target ~= @args.join;
         }
     }
+}
+
+sub capture_stdout_off is export {
+    $*OUT = $stdout;
 }
 
 sub capture_stderr(Callable $code) is export {
@@ -64,6 +74,10 @@ sub capture_stderr_on($target is rw) is export {
     }
 }
 
+sub capture_stderr_off is export {
+    $*ERR = $stderr;
+}
+
 sub capture_stdin(Callable $code) is export {
     my $result;
 
@@ -86,20 +100,6 @@ sub capture_stdin_on($target is rw) is export {
     }
 }
 
-sub capture_stdout_off is export {
-    $*OUT = $stdout;
-}
-
-sub capture_stderr_off is export {
-    $*ERR = $stderr;
-}
-
 sub capture_stdin_off is export {
-    $*IN = $stdin;
-}
-
-sub capture_off is export {
-    $*OUT = $stdout;
-    $*ERR = $stderr;
     $*IN = $stdin;
 }
