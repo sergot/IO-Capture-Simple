@@ -33,6 +33,7 @@ sub capture_stdout(Callable $code) is export {
         method print(*@args) {
             $result ~= @args.join;
         }
+        method print-nl { nextsame };
         method flush {}
     }
 
@@ -46,6 +47,7 @@ sub capture_stdout_on($target is rw) is export {
         method print(*@args) {
             $target ~= @args.join;
         }
+        method print-nl { nextsame }
         method flush {}
     }
 }
@@ -61,6 +63,7 @@ sub capture_stderr(Callable $code) is export {
         method print(*@args) {
             $result ~= @args.join;
         }
+        method print-nl { nextsame }
     }
 
     $code.();
@@ -73,6 +76,7 @@ sub capture_stderr_on($target is rw) is export {
         method print(*@args) {
             $target ~= @args.join;
         }
+        method print-nl { nextsame }
     }
 }
 
