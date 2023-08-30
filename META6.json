@@ -1,11 +1,11 @@
 {
 	"perl"		: "6.*",
 	"name"		: "IO::Capture::Simple",
-	"version"	: "*",
+	"version"	: "0.0.1",
 	"description"	: "IO can be captured",
 	"provides"	: {
-		"Test::IO::Capture"	: "lib/Test/IO/Capture.pm",
-		"IO::Capture::Simple"	: "lib/IO/Capture/Simple.pm"
+		"Test::IO::Capture"	: "lib/Test/IO/Capture.pm6",
+		"IO::Capture::Simple"	: "lib/IO/Capture/Simple.pm6"
 	},
 	"depends"	: [],
 	"source-url"	: "git://github.com/sergot/IO-Capture-Simple.git"
